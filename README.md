@@ -125,7 +125,6 @@ Please update new rates in the system.
 Thanks & Regards,
 [Your Name]
 Data Analyst
-Ashley Furniture India Pvt. Ltd.
 ```
 
 ## Testing
