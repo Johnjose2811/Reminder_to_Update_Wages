@@ -10,7 +10,7 @@ This collection of Power Automate flows helps organizations streamline their wag
 
 ### Flows
 
-- **[Minimum Wage Report Flow](./flows/min-wage-report/)** - Automated notification system for minimum wage changes
+Automated notification system for minimum wage changes
 
 ## Minimum Wage Report Notification Flow
 
