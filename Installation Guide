@@ -1,0 +1,212 @@
+Prerequisites
+
+
+Microsoft 365 account with Power Automate license
+
+Access to SharePoint Online
+
+Excel file with minimum wage data
+
+Appropriate permissions to create and manage flows
+
+
+Step-by-Step Installation
+
+1. Prepare the Excel File
+
+
+Create or locate your minimum wage tracking Excel file
+
+Ensure it contains a table with these columns:
+
+Jurisdiction (Text)
+
+Effective Date (Date format)
+
+
+
+Upload the file to a SharePoint document library
+
+Note the SharePoint site URL and file location
+
+
+2. Import the Flow
+
+
+Go to Power Automate
+
+Navigate to My flows
+
+Click Import → Import Package (Legacy)
+
+Select the flow package file from this repository
+
+Click Upload
+
+
+3. Configure Connections
+
+During import, you'll need to configure these connections:
+
+
+Excel Online (Business)
+
+
+Click Select during import
+
+Choose an existing connection or create a new one
+
+Sign in with your Microsoft 365 account if prompted
+
+
+Office 365 Outlook
+
+
+Click Select during import
+
+Choose an existing connection or create a new one
+
+Sign in with your Microsoft 365 account if prompted
+
+
+4. Complete the Import
+
+
+Review the import setup
+
+Click Import
+
+Wait for the import to complete
+
+
+5. Configure Flow Settings
+
+
+Open the imported flow
+
+Click Edit
+
+
+Update Excel Data Source
+
+
+Find the List rows present in a table action
+
+Click to edit the action
+
+Configure:
+
+Location: Select your SharePoint site
+
+Document Library: Choose the library containing your Excel file
+
+File: Select your Excel file
+
+Table: Choose the table with minimum wage data
+
+
+
+
+Update Email Recipients
+
+
+Find the Send an email (V2) action
+
+Update:
+
+To: Enter recipient email address(es)
+
+Cc: Enter CC email address(es) (optional)
+
+
+
+Customize the email body if needed
+
+
+Adjust Schedule (Optional)
+
+
+Click on the Recurrence trigger
+
+Modify as needed:
+
+Interval: Keep as 1
+
+Frequency: Keep as Day
+
+Time Zone: Change if not using India Standard Time
+
+At these hours: Change from 10 if different time needed
+
+
+
+
+6. Test the Flow
+
+
+Click Test in the top right
+
+Select Manually
+
+Click Test
+
+Add a test record with Effective Date = Today + 7 days
+
+Verify email is received
+
+
+7. Enable the Flow
+
+
+Click Turn on to activate the flow
+
+The flow will now run daily at the scheduled time
+
+
+Verification Checklist
+
+
+ Flow imported successfully
+
+ Excel connection configured
+
+ Outlook connection configured
+
+ SharePoint file location updated
+
+ Email recipients updated
+
+ Schedule configured correctly
+
+ Test run completed successfully
+
+ Flow is turned on
+
+
+Post-Installation
+
+
+Monitor the flow run history for the first few days
+
+Ensure emails are being sent as expected
+
+Verify date calculations are correct
+
+Document any customizations made
+
+
+Rollback
+
+If you need to remove the flow:
+
+
+
+Go to My flows
+
+Find the "Min wage Report" flow
+
+Click ... (More options)
+
+Select Delete
+
+Confirm deletion
