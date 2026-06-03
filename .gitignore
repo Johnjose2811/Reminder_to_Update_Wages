@@ -1,0 +1,22 @@
+# Sensitive information
+**/connectionsMap.json
+**/apisMap.json
+
+# Environment-specific files
+**/*connection*.json
+**/*.user.json
+
+# Personal identifiable information
+**/personal-*.json
+
+# Credentials
+**/credentials.json
+**/secrets.json
+
+# Logs
+*.log
+**/logs/
+
+# Temporary files
+*.tmp
+*.temp
