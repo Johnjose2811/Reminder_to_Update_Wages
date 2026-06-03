@@ -1,0 +1,67 @@
+
+{
+  "name": "min-wage-report",
+  "displayName": "Minimum Wage Report Notification Flow",
+  "description": "Automated daily flow that checks for upcoming minimum wage changes and sends reminder emails one week before the effective date.",
+  "trigger": {
+    "type": "Recurrence",
+    "recurrence": {
+      "interval": 1,
+      "frequency": "Day",
+      "timeZone": "India Standard Time",
+      "schedule": {
+        "minutes": [0],
+        "hours": ["10"]
+      }
+    }
+  },
+  "actions": [
+    {
+      "name": "List_rows_present_in_a_table",
+      "type": "ExcelOnlineBusiness",
+      "operation": "GetItems",
+      "description": "Reads minimum wage data from Excel table in SharePoint",
+      "parameters": {
+        "source": "SharePoint Group",
+        "drive": "SharePoint Document Library",
+        "file": "Min Wage Reporting.xlsx",
+        "table": "Minimum Wage Table"
+      }
+    },
+    {
+      "name": "Filter_array",
+      "type": "Query",
+      "description": "Filters rows where Effective Date is exactly 7 days from today",
+      "expression": "and(not(empty(item()?['Effective Date'])), equals(formatDateTime(addDays('1899-12-30', int(float(item()?['Effective Date']))), 'yyyy-MM-dd'), formatDateTime(addDays(utcNow(), 7), 'yyyy-MM-dd')))"
+    },
+    {
+      "name": "Apply_to_each",
+      "type": "Foreach",
+      "description": "Iterates through filtered results and sends email notifications",
+      "actions": [
+        {
+          "name": "Send_an_email",
+          "type": "Office365Outlook",
+          "operation": "SendEmailV2",
+          "parameters": {
+            "To": "[RECIPIENT_EMAIL]",
+            "Cc": "[CC_EMAIL]",
+            "Subject": "Reminder: Minimum wage rate change for @{jurisdiction} from @{effectiveDate}",
+            "Body": "Email template with jurisdiction and effective date details",
+            "Importance": "High"
+          }
+        }
+      ]
+    }
+  ],
+  "connections": {
+    "excelonlinebusiness": {
+      "displayName": "Excel Online (Business)",
+      "api": "shared_excelonlinebusiness"
+    },
+    "office365": {
+      "displayName": "Office 365 Outlook",
+      "api": "shared_office365"
+    }
+  }
+}
