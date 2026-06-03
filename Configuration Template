@@ -1,0 +1,32 @@
+{
+  "flow": {
+    "displayName": "Min wage Report",
+    "description": "Automated notification system for upcoming minimum wage changes"
+  },
+  "trigger": {
+    "schedule": {
+      "frequency": "Day",
+      "interval": 1,
+      "time": "10:00",
+      "timeZone": "India Standard Time"
+    }
+  },
+  "dataSource": {
+    "sharePointSite": "[YOUR_SHAREPOINT_SITE_URL]",
+    "documentLibrary": "[YOUR_DOCUMENT_LIBRARY]",
+    "fileName": "Min Wage Reporting.xlsx",
+    "tableName": "[YOUR_TABLE_NAME]"
+  },
+  "notifications": {
+    "email": {
+      "to": "[RECIPIENT_EMAIL]",
+      "cc": "[CC_EMAIL]",
+      "importance": "High"
+    },
+    "advanceNoticeDays": 7
+  },
+  "requiredColumns": [
+    "Jurisdiction",
+    "Effective Date"
+  ]
+}
